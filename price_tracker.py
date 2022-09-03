@@ -21,7 +21,7 @@ to_address = ""
 def check_price():
     page = requests.get(URL, headers=headers)
 
-    soup = BeautifulSoup(page.content, 'html.parser')
+    soup = BeautifulSoup(page.content, 'html.lxml')
 
     title = soup.find(id="productTitle").get_text()
     price = soup.find('span', {"class" : "a-price-whole"}).get_text()
@@ -34,7 +34,7 @@ def check_price():
         
     product_price = float(product_price)
 
-    if product_price > 104000:
+    if product_price < 104000:
         send_mail()
     
     
